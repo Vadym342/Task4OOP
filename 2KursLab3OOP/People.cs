@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace _2KursLab3OOP
 {
-   public class People
+   public class People :Person,IDateAndCopy
     {
         private Person _Person;
         private Science _Science;
         private int _Code_Spec;
-        private List<Specialization> _specializations;
+         private List<Specialization> _specializations;
+        private System.Collections.ArrayList arr = new System.Collections.ArrayList();
+        
+        public DateTime Date { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public People(Person person, Science science, int code_spec)
         {
@@ -55,6 +58,16 @@ namespace _2KursLab3OOP
         public virtual string ToShortString()
         {
             return $"{_Person}Science:{_Science} (Code: {_Code_Spec}) Rating: {Rating()}:  rating 1-100";
+        }
+
+
+
+        public object DeepCopy()
+        {
+            Person other = (Person)this.MemberwiseClone();
+            other.Name = String.Copy(Name);
+            other.Surname = String.Copy(Surname);
+            return other;
         }
     }
 }

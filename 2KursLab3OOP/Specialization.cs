@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace _2KursLab3OOP
 {
-   public class Specialization
+   public class Specialization:IDateAndCopy
     {
         public string Name_Spec { get; set; }
         public int Code { get; set; }
         public DateTime EndDate { get; set; }
+        public DateTime Date { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Specialization()
         {
@@ -34,6 +35,11 @@ namespace _2KursLab3OOP
             return $"{Name_Spec} {Code}";
         }
 
-
+        public object DeepCopy()
+        {
+            Person other = (Person)this.MemberwiseClone();
+            other.Name = String.Copy(Name_Spec);
+            return other;
+        }
     }
 }
